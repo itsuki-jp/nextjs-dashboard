@@ -7,4 +7,9 @@
 ## Nested Routing
 - フォルダ配下のpage.tsxは特別で、例えば app/page.tsx は /, app/oyo/page.tsx は /oyo にアクセスすると表示される
 <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Ffolders-to-url-segments.png&w=3840&q=75">
+
+## layout
+- `layout.tsx`は他のページと共有のUIを作成できる
+<img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fshared-layout.png&w=3840&q=75">
+- pageコンポーネントは再レンダリングされるけど、レイアウトはされないので、（多分効率が良い）
 - 
