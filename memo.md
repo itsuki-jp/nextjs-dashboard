@@ -36,9 +36,10 @@ className={clsx(
 )}
 ```
 - `pathname === link.href`の時に、下部を適用する、って認識であってるかな
-- 
 
 
+# Ch.6: Setting Up Your Database
+- データをDBに登録することを`seeding`と呼ぶ？
 
 # memo
 ## よくわからんエラー
