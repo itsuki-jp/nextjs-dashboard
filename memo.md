@@ -41,6 +41,80 @@ className={clsx(
 # Ch.6: Setting Up Your Database
 - データをDBに登録することを`seeding`と呼ぶ？
 
+[# Ch.7: Fetching Data](https://nextjs.org/learn/dashboard-app/fetching-data#using-server-components-to-fetch-data)
+## Choosing how to fetch data
+API
+- 外部のAPIを提供してるサービスを使いたい時
+- データを秘密にしておきたい時
+- https://nextjs.org/docs/app/building-your-application/routing/route-handlers
+
+データベースクエリ
+- DBをいじいじする必要があるとき
+- React Server Componentを使ってるとき
+  - なんだこれは？
+  - DBを直接クエリ操作できる。DBの漏洩をリスクがない
+- https://vercel.com/docs/storage/vercel-postgres/using-an-orm
+
+SQL
+- なんでもできる（versatile: 用途が広い）
+
+結局、APIを使っても、クエリを使っても、SQLを使うんじゃないのか？
+## React Server Components
+どうやら新しい機能？らしい。デフォで使われてる
+
+メリット
+- 非同期処理が楽になる？`useEffect`/`useState`を使わなくても、`async/await`が使える？
+- サーバーで実行されるから
+  - 結果のみクライアントに送られる（データ・ロジックはサーバーのみが保持できる）
+  - 直接DBをクエリ操作できる
+
+問題点 
+- `request waterfall`が発生する
+  - 前のリクエストが終了したら、次のが実行される。並列処理されてない
+    ```
+    const revenue = await fetchRevenue();
+    const latestInvoices = await fetchLatestInvoices(); // fetchRevenue()が終わるまで待つ
+    const {
+    numberOfInvoices,
+    numberOfCustomers,
+    totalPaidInvoices,
+    totalPendingInvoices,
+    } = await fetchCardData(); // fetchLatestInvoices()が終わるまで待つ
+    ```
+
+    - 対処法として、`Promise.all()`で並列に処理
+      - どれかのリクエストがめっちゃ遅かったらどうなる...?(そんなこと聞かれても、知らない)
+
+    ```
+    export async function fetchCardData() {
+    try {
+    const invoiceCountPromise = sql`SELECT COUNT(*) FROM invoices`;
+    const customerCountPromise = sql`SELECT COUNT(*) FROM customers`;
+    const invoiceStatusPromise = sql`SELECT
+            SUM(CASE WHEN status = 'paid' THEN amount ELSE 0 END) AS "paid",
+            SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
+            FROM invoices`;
+    // Promise.all()で並列に処理
+    + const data = await Promise.all([
+        invoiceCountPromise,
+        customerCountPromise,
+        invoiceStatusPromise,
+    ]);
+    // ...
+    }
+    }
+    ```
+  - <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fsequential-parallel-data-fetching.png&w=3840&q=75">
+- `static rendering`(静的レンダリング)なので、データが変化しても表示は変化しない
+  - SQLが問い合わせてる先のデータが削除・追加されても、そのつどSQLが実行されるわけじゃない
+- 
+
+## fetching data for the dashboard overview page
+- `export default async function Page()`の`async`が`await`を使えるようにする
+- ``const data = await sql<Revenue>`SELECT * FROM revenue`;``でSQLが実行できそう
+
+
+
 # memo
 ## よくわからんエラー
 ```
