@@ -128,6 +128,17 @@ SQL
   - クッキーとか、URLのパラメータとかの、リクエスト時にのみ得られる情報にアクセスできる
   - ただ、データのフェッチに時間がかかると、ページ読み込みもその分遅くなる
 
+# Ch.9: Streaming
+## Streamについて学ぼう
+- データを小さいまとまり（チャンク）にして、送れるぜ！になったら各々送る
+  - 早くなるよ
+  <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fserver-rendering-with-streaming.png&w=1920&q=75">
+  <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fserver-rendering-with-streaming-chart.png&w=1920&q=75">
+- 方法
+  - loading.tsxファイル
+  - `<Suspense>`コンポーネント
+- 
+
 # memo
 ## よくわからんエラー
 ```
