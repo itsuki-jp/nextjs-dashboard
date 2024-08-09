@@ -41,7 +41,7 @@ className={clsx(
 # Ch.6: Setting Up Your Database
 - データをDBに登録することを`seeding`と呼ぶ？
 
-[# Ch.7: Fetching Data](https://nextjs.org/learn/dashboard-app/fetching-data#using-server-components-to-fetch-data)
+# [Ch.7: Fetching Data](https://nextjs.org/learn/dashboard-app/fetching-data#using-server-components-to-fetch-data)
 ## Choosing how to fetch data
 API
 - 外部のAPIを提供してるサービスを使いたい時
@@ -84,6 +84,8 @@ SQL
 
     - 対処法として、`Promise.all()`で並列に処理
       - どれかのリクエストがめっちゃ遅かったらどうなる...?(そんなこと聞かれても、知らない)
+      - これ、並列に実行している場合ではなく、非同期処理してる場合は、一つ遅いのがあると大変だよね！っていう話な気がしてきた
+        - 非同期だろうが、同期だろうが、データを動的に読み込むのであれば、遅い処理があればそりゃページ読み込む速度遅くなるよね
 
     ```
     export async function fetchCardData() {
@@ -113,7 +115,18 @@ SQL
 - `export default async function Page()`の`async`が`await`を使えるようにする
 - ``const data = await sql<Revenue>`SELECT * FROM revenue`;``でSQLが実行できそう
 
-
+# Ch.8: Static and Dynamic Rendering
+- 静的レンダリング：ユーザーが訪れるたびに、キャッシュされたのが提供される
+- メリット
+  - 早い
+  - サーバーが大変じゃない
+  - SEO対策になる。クローラーがニコニコする
+- 向いてる場所
+  - データ使わないサイト
+  - みんな共通のデータ（不変）を使う
+- 動的レンダリング
+  - クッキーとか、URLのパラメータとかの、リクエスト時にのみ得られる情報にアクセスできる
+  - ただ、データのフェッチに時間がかかると、ページ読み込みもその分遅くなる
 
 # memo
 ## よくわからんエラー
