@@ -135,9 +135,12 @@ SQL
   <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fserver-rendering-with-streaming.png&w=1920&q=75">
   <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fserver-rendering-with-streaming-chart.png&w=1920&q=75">
 - 方法
-  - loading.tsxファイル
-  - `<Suspense>`コンポーネント
-- 
+1. loading.tsxファイル
+- `loading.tsx`はnext.jsの`Suspense`の特別なファイルらしい
+  - `page.tsx`みたいな、特殊な奴か？
+2. `<Suspense>`コンポーネント
+- 何らかの条件が満たされるまで（例：データが読み込まれるまで）一部のレンダリングを延期できる
+- 動的コンポーネントをSusppenseでラップ、動的コンポーネントのロード中に表示するフォールバックコンポーネントを渡す
 
 # memo
 ## よくわからんエラー
@@ -149,3 +152,7 @@ Error: Unsupported Server Component type: undefined
 ```
 - これは`pnpm add next@canary`したら直った。
 - `npm i next@latest`, `npm i next@canary`は無力だった
+
+## import の謎
+`import { lusitana } from '@/app/ui/fonts';`と  `import CardWrapper from '@/app/ui/dashboard/cards';`は何が違う？
+なんで二通りの書き方が存在する？
