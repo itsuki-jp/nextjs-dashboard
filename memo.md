@@ -134,11 +134,10 @@ SQL
   - 早くなるよ
   <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fserver-rendering-with-streaming.png&w=1920&q=75">
   <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fserver-rendering-with-streaming-chart.png&w=1920&q=75">
-## 使い方
-1. loading.tsxファイル
-- `loading.tsx`はnext.jsの`Suspense`の特別なファイルらしい
-  - `page.tsx`みたいな、特殊な奴か？
-1. `<Suspense>`コンポーネント
+- 方法
+  - loading.tsxファイル
+  - `<Suspense>`コンポーネント
+- 
 
 # memo
 ## よくわからんエラー
