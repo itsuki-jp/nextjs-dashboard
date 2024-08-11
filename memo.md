@@ -233,12 +233,33 @@ export const experimental_ppr = true; // 追記
 - `usePathName`: 現在のURLを取得可能
 - `useRouter`: ページの遷移が出来る（？）
 
+## debouncing（ディバウンシング）
+- 関数の発火を制限する
+  - 現状：ユーザーが一文字入力するたびに、検索している->サーバーが大変
+  - 理想：ユーザーが入力を止めた時に、発火させたい
+- 原理
+  1. 発火：発火したら、タイマーがスタート
+  2. 待機：もし再度発火 & タイマーが時間切れじゃない -> タイマーリセット
+  3. 実行：もしタイマーが切れたら、関数実行
+`pnpm i use-debounce`
+
+
 ## Tip: defaultValue vs value
 - `value`: stateで入力値を管理してる
   - controlled components(?)にするため
   - reactがinputの状態を管理できる
 - `defaultValue`: stateで管理してない
   - inputのみが情報を管理・保持してる
+```
+<input
+  className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+  placeholder={placeholder}
+  onChange={(e) => {
+    handleSearch(e.target.value);
+  }}
+  defaultValue={searchParams.get('query')?.toString()}
+/>
+```
 
 ## `useSearchParams` hook vs `searchParams` props
 - `useSearchParams`:  クライアントコンポーネント
