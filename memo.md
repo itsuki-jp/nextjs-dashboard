@@ -233,6 +233,17 @@ export const experimental_ppr = true; // 追記
 - `usePathName`: 現在のURLを取得可能
 - `useRouter`: ページの遷移が出来る（？）
 
+## Tip: defaultValue vs value
+- `value`: stateで入力値を管理してる
+  - controlled components(?)にするため
+  - reactがinputの状態を管理できる
+- `defaultValue`: stateで管理してない
+  - inputのみが情報を管理・保持してる
+
+## `useSearchParams` hook vs `searchParams` props
+- `useSearchParams`:  クライアントコンポーネント
+- `searchParams`: サーバーコンポーネント
+
 # memo
 
 ## よくわからんエラー
