@@ -142,6 +142,45 @@ SQL
 - 何らかの条件が満たされるまで（例：データが読み込まれるまで）一部のレンダリングを延期できる
 - 動的コンポーネントをSusppenseでラップ、動的コンポーネントのロード中に表示するフォールバックコンポーネントを渡す
 
+# [Ch.10: Partial Prerendering](https://nextjs.org/learn/dashboard-app/partial-prerendering)
+- 元々、ルート（？）全体を静的・動的レンダリングのどちらかに統一する必要があった（？）
+  - `if you call a dynamic function in a route (like querying your database), the entire route becomes dynamic.`
+  - でも、動的・静的どっちも使いたいね
+  - <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fdashboard-static-dynamic-components.png&w=3840&q=75">
+
+- Partial Prerendering(PPR): Next.js 14 で登場
+  - `Suspense`を使って、動的に読み込む場所のスペースを残して静的レンダリング->動的コンテンツを非同期に読み込みレンダリング
+
+- 使い方
+  - `Suspense`で動的なのをラップしてれば、基本的にコードを変えなくてもよい
+```neext.config.mjs
+// 追記
+const nextConfig = {
+    experimental: {
+        ppr: "incremental",
+    }
+};
+```
+
+```layout.tsx
+export const experimental_ppr = true; // 追記
+```
+
+- データフェッチを最適化しよう
+  1. データベースのリージョンは近所に
+  2. `React Server Components`を使うと、ロジック・データがサーバー内のみに存在する
+     - クライアントのJSが頑張らなくていい
+     - データがクライアントに漏れる心配ない
+  3. 必要な分のデータはSQLで取得しよう
+     - 毎回の通信するデータが減る
+     - in-memoryに変換するようのJSが減る
+  4. データは並列に取得しよう
+  5. Streamingで、重いデータが足を引っ張ってページがいつまでも表示されない...をなくそう
+     - すべてロードされなくても、ユーザーが画面操作できるようにしたいね
+  6. データフェッチを必要なコンポーネントに移すことで、ルートのどの部分をダイナミックにすべきかを分離します。（？？？）
+     - ちょっと何言ってるか分からない...?????
+
+
 # memo
 ## よくわからんエラー
 ```
