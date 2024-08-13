@@ -265,6 +265,16 @@ export const experimental_ppr = true; // 追記
 - `useSearchParams`:  クライアントコンポーネント
 - `searchParams`: サーバーコンポーネント
 
+# Ch.12: Mutating Data (mutate: 変化する)
+## Server Actionとは
+- サーバー上でコードを非同期で実行できる
+  - APIを作らなくてもよい！
+  - クライアント/サーバーコンポーネントから実行可能
+- どうやら、セキュリティ面もいい感じらしい
+  - encrypted closures, strict input checks, error message hashing, and host restrictions...
+
+## invoiceを作ろう
+
 # memo
 
 ## よくわからんエラー
