@@ -303,7 +303,19 @@ export const experimental_ppr = true; // 追記
   ```
   - floatをなるべく扱わないようにしよう(intで管理できるのであれば、そうする)
 - [client-side router cashe](https://nextjs.org/docs/app/building-your-application/caching#router-cache)
-  - 
+  - これ、良く分からない
+
+## invoiceをアップデートしよう
+- [Dynamic Route Seements](https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes)
+  - 正確な「segment name」を知らない & ルートをデータを基に作りたい時に良い (ブログタイトル、製品ページ...)
+  - <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fedit-invoice-route.png&w=3840&q=75">
+- server actionにはpropsを渡せない？bindを使う必要がある？
+  - これ良く分からない
+
+## Tip: UUID vs auto-incrementing key
+- auto-incrementing key: 短い
+- UUID: 長いけどたくさんのメリット
+  - IDが衝突しない・ユニーク・列挙型攻撃に強い -> 大きいDBに向いてる
 
 # memo
 
