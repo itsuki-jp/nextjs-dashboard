@@ -274,6 +274,36 @@ export const experimental_ppr = true; // 追記
   - encrypted closures, strict input checks, error message hashing, and host restrictions...
 
 ## invoiceを作ろう
+- `use server;`: エクスポートされたのが、server actionになる。
+  - クライアント・サーバーコンポーネントにて使用可能
+- `formData`の情報を取得するためには、`.get(name)`を使う
+  - 
+  ```
+  'use server';
+ 
+  export async function createInvoice(formData: FormData) {
+    const rawFormData = {
+      customerId: formData.get('customerId'),
+      amount: formData.get('amount'),
+      status: formData.get('status'),
+    };
+  }
+  ```
+- バリデーションしたい
+  - `typeof rawFormData.amount`: 型が分かる
+  - [Zod](https://zod.dev/): バリデーションライブラリ
+  - 
+  ```
+  import { z } from 'zod';
+  const rawFormData = {
+    customerId: formData.get('customerId'),
+    amount: formData.get('amount'),
+    status: formData.get('status'),
+  };
+  ```
+  - floatをなるべく扱わないようにしよう(intで管理できるのであれば、そうする)
+- [client-side router cashe](https://nextjs.org/docs/app/building-your-application/caching#router-cache)
+  - 
 
 # memo
 
