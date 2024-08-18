@@ -3,7 +3,7 @@
 ## Image
 
 - `md:block` <-これは、`mobile`?`middle device`
-- https://nextjs.org/docs/app/building-your-application/optimizing/images
+- [Image Optimization](https://nextjs.org/docs/app/building-your-application/optimizing/images)
 
 # Ch4: Layouts and Pages
 
@@ -341,6 +341,24 @@ export const experimental_ppr = true; // 追記
   }
   ```
 
+# [Ch.14: Improving Accessibility](https://nextjs.org/learn/dashboard-app/improving-accessibility)
+## Form Validation
+- `useActionState`(クライアントコンポーネントで使う)
+```tsx
+const FormSchema = z.object({
+  id: z.string(),
+  customerId: z.string({
+    invalid_type_error: 'Please select a customer.',
+  }),
+  amount: z.coerce
+    .number()
+    .gt(0, { message: 'Please enter an amount greater than $0.' }),
+  status: z.enum(['pending', 'paid'], {
+    invalid_type_error: 'Please select an invoice status.',
+  }),
+  date: z.string(),
+});
+```
 # memo
 
 ## よくわからんエラー
