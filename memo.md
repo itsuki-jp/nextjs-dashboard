@@ -392,6 +392,18 @@ Error: Unsupported Server Component type: undefined
 
 `import { lusitana } from '@/app/ui/fonts';`と `import CardWrapper from '@/app/ui/dashboard/cards';`は何が違う？
 なんで二通りの書き方が存在する？
+- 前者：名前付きインポート
+    - 下みたいに、モジュールが複数のエクスポート持つときに使う
+    ```js
+    export const lusitana = 'some-value';
+    export const anotherFont = 'another-value';
+    ```
+- 後者：デフォルトインポート
+    - モジュールが一つしかエクスポートしない時に使う
+    ```js
+    const CardWrapper = () => { /* ... */ };
+    export default CardWrapper;
+    ```
 
 ## `use client`?
 - イベントリスナーとフックを使えるらしい
