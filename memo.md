@@ -1,11 +1,11 @@
-# Ch3: Optimizing Fonts and Images
+# [Ch3: Optimizing Fonts and Images](https://nextjs.org/learn/dashboard-app/optimizing-fonts-images)
 
 ## Image
 
 - `md:block` <-これは、`medium`らしい
 - [Image Optimization](https://nextjs.org/docs/app/building-your-application/optimizing/images)
 
-# Ch4: Layouts and Pages
+# [Ch4: Layouts and Pages](https://nextjs.org/learn/dashboard-app/creating-layouts-and-pages)
 
 ## Nested Routing
 
@@ -18,7 +18,7 @@
   <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fshared-layout.png&w=3840&q=75">
 - `page` コンポーネントは再レンダリングされるけど、レイアウトはされないので、（たぶん効率が良い）
 
-# Ch5: Navigating Between Pages
+# [Ch5: Navigating Between Pages](https://nextjs.org/learn/dashboard-app/navigating-between-pages)
 
 ## Link
 
@@ -46,7 +46,7 @@ className={clsx(
 
 - `pathname === link.href`の時に、追加で`bg-sky-100 text-blue-600`が追加される
 
-# Ch.6: Setting Up Your Database
+# [Ch.6: Setting Up Your Database](https://nextjs.org/learn/dashboard-app/setting-up-your-database)
 
 - データを DB に登録することを`seeding`と呼ぶ
 
@@ -131,7 +131,7 @@ API
 - `export default async function Page()`の`async`が`await`を使えるようにする
 - `` const data = await sql<Revenue>`SELECT * FROM revenue`; ``で SQL が実行できそう
 
-# Ch.8: Static and Dynamic Rendering
+# [Ch.8: Static and Dynamic Rendering](https://nextjs.org/learn/dashboard-app/static-and-dynamic-rendering)
 
 - 静的レンダリング：ユーザーが訪れるたびに、キャッシュされたのが提供される
 - メリット
@@ -145,7 +145,7 @@ API
   - クッキーとか、URL のパラメータとかの、リクエスト時にのみ得られる情報にアクセスできる
   - ただ、データのフェッチに時間がかかると、ページ読み込みもその分遅くなる
 
-# Ch.9: Streaming
+# [Ch.9: Streaming](https://nextjs.org/learn/dashboard-app/streaming)
 
 ## Stream について学ぼう
 
@@ -260,7 +260,7 @@ export const experimental_ppr = true; // 追記
 - `useSearchParams`:  クライアントコンポーネント
 - `searchParams`: サーバーコンポーネント
 
-# Ch.12: Mutating Data (mutate: 変化する)
+# [Ch.12: Mutating Data (mutate: 変化する)](https://nextjs.org/learn/dashboard-app/mutating-data)
 ## Server Actionとは
 - サーバー上でコードを非同期で実行できる
   - APIを作らなくてもよい！
@@ -312,7 +312,7 @@ export const experimental_ppr = true; // 追記
 - UUID: 長いけどたくさんのメリット
   - IDが衝突しない・ユニーク・列挙型攻撃に強い -> 大きいDBに向いてる
 
-# Ch.13: Handling Errors
+# [Ch.13: Handling Errors](https://nextjs.org/learn/dashboard-app/error-handling)
 [error.js](https://nextjs.org/docs/app/api-reference/file-conventions/error)
 [notFound](https://nextjs.org/docs/app/api-reference/functions/not-found)
 [not-found.js](https://nextjs.org/docs/app/api-reference/file-conventions/not-found)
@@ -356,7 +356,7 @@ const FormSchema = z.object({
 ```
 - 色々な機能が、色々なファイルに散らばってて、何が何だか
 
-# Ch.15: Adding Authentication
+# [Ch.15: Adding Authentication](https://nextjs.org/learn/dashboard-app/adding-authentication)
 ## Authetication vs Authorization
 - Authentication(認証):身分を証明する行為（ユーザー名とパスワード的な） 
 - Authorization（認可）: 認証された時、アプリをどこまで使っていいか決める（？）
