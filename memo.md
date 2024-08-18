@@ -359,6 +359,7 @@ const FormSchema = z.object({
   date: z.string(),
 });
 ```
+- 色々な機能が、色々なファイルに散らばってて、何が何だか
 
 # Ch.15: Adding Authentication
 ## Authetication vs Authorization
@@ -376,6 +377,7 @@ pnpm i next-auth@beta
 ```
 openssl rand -base64 32
 ```
+- やることがたくさんあって、何が何だか
 
 # memo
 
