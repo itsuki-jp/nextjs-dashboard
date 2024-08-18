@@ -359,6 +359,12 @@ const FormSchema = z.object({
   date: z.string(),
 });
 ```
+
+# Ch.15: Adding Authentication
+## Authetication vs Authorization
+- Authentication:身分を証明する行為（ユーザー名とパスワード的な） 
+- Authorization: Authenticatedの時、アプリをどこまで使っていいか決める（？）
+
 # memo
 
 ## よくわからんエラー
