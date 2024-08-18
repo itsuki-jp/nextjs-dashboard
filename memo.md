@@ -9,16 +9,16 @@
 
 ## Nested Routing
 
-- フォルダ配下の page.tsx は特別で、例えば app/page.tsx は /, app/oyo/page.tsx は /oyo にアクセスすると表示される
+- フォルダ配下の `page.tsx` は特別で、例えば `app/page.tsx` は `/`, `app/oyo/page.tsx` は `/oyo` にアクセスすると表示される
   <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Ffolders-to-url-segments.png&w=3840&q=75">
 
 ## layout
 
-- `layout.tsx`は他のページと共有の UI を作成できる
+- `layout.tsx` は他のページと共有するUIを作れる
   <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fshared-layout.png&w=3840&q=75">
-- page コンポーネントは再レンダリングされるけど、レイアウトはされないので、（多分効率が良い）
+- `page` コンポーネントは再レンダリングされるけど、レイアウトはされないので、（たぶん効率が良い）
 
-# Ch5: ページ間のナビゲーション
+# Ch5: Navigating Between Pages
 
 ## Link
 
@@ -30,12 +30,12 @@
 
 ## usePathname()
 
-- クライアントコンポーネント？にする必要がある？
+- クライアントコンポーネントにする必要がある
 - 参考：https://nextjs.org/docs/app/api-reference/functions/use-pathname
 
 ## clsx
 
-```
+```jsx
 className={clsx(
     'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
     {
@@ -85,7 +85,7 @@ API
 
   - 前のリクエストが終了したら、次のが実行される。並列処理されてない
 
-    ```
+    ```js
     const revenue = await fetchRevenue();
     const latestInvoices = await fetchLatestInvoices(); // fetchRevenue()が終わるまで待つ
     const {
@@ -100,7 +100,7 @@ API
       - どれかのリクエストがめっちゃ遅かったらどうなる...?
         - データを動的に読み込むのであれば、遅い処理があればそりゃページ読み込む速度遅くなるよね
 
-    ```
+    ```js
     export async function fetchCardData() {
     try {
     const invoiceCountPromise = sql`SELECT COUNT(*) FROM invoices`;
@@ -136,10 +136,10 @@ API
 - 静的レンダリング：ユーザーが訪れるたびに、キャッシュされたのが提供される
 - メリット
   - 早い
-  - サーバーが大変じゃない
-  - SEO 対策になる。クローラーがニコニコする
+  - サーバーの負担が少ない
+  - SEO対策になる。クローラーが喜ぶ
 - 向いてる場所
-  - データ使わないサイト
+  - データを使わないサイト
   - みんな共通のデータ（不変）を使う
 - 動的レンダリング
   - クッキーとか、URL のパラメータとかの、リクエスト時にのみ得られる情報にアクセスできる
@@ -181,16 +181,18 @@ API
 - 使い方
   - `Suspense`で動的なのをラップしてれば、基本的にコードを変えなくてもよい
 
-```neext.config.mjs
+```mjs
+// next.config.mjs
 // 追記
 const nextConfig = {
-    experimental: {
-        ppr: "incremental",
-    }
+  experimental: {
+    ppr: "incremental",
+  }
 };
 ```
 
-```layout.tsx
+```tsx
+// layout.tsx
 export const experimental_ppr = true; // 追記
 ```
 
@@ -205,8 +207,8 @@ export const experimental_ppr = true; // 追記
   4. データは並列に取得しよう
   5. Streaming で、重いデータが足を引っ張ってページがいつまでも表示されない...をなくそう
      - すべてロードされなくても、ユーザーが画面操作できるようにしたいね
-  6. データフェッチを必要なコンポーネントに移すことで、ルートのどの部分をダイナミックにすべきかを分離します。（？？？）
-     - ちょっと何言ってるか分からない...?????
+  6. データフェッチを必要なコンポーネントに移すことで、どの部分をダイナミックにするかを分離できる
+
 
 # [Ch.11: Adding Search and Pagination](https://nextjs.org/learn/dashboard-app/adding-search-and-pagination)
 
@@ -243,7 +245,7 @@ export const experimental_ppr = true; // 追記
   - reactがinputの状態を管理できる
 - `defaultValue`: stateで管理してない
   - inputのみが情報を管理・保持してる
-```
+```jsx
 <input
   className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
   placeholder={placeholder}
@@ -271,7 +273,7 @@ export const experimental_ppr = true; // 追記
   - クライアント・サーバーコンポーネントにて使用可能
 - `formData`の情報を取得するためには、`.get(name)`を使う
   - 
-  ```
+  ```tsx
   'use server';
  
   export async function createInvoice(formData: FormData) {
@@ -286,7 +288,7 @@ export const experimental_ppr = true; // 追記
   - `typeof rawFormData.amount`: 型が分かる
   - [Zod](https://zod.dev/): バリデーションライブラリ
   - 
-  ```
+  ```tsx
   import { z } from 'zod';
   const rawFormData = {
     customerId: formData.get('customerId'),
