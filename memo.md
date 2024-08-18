@@ -18,7 +18,7 @@
   <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fshared-layout.png&w=3840&q=75">
 - page コンポーネントは再レンダリングされるけど、レイアウトはされないので、（多分効率が良い）
 
-# Ch5: Navigating Between Pages
+# Ch5: ページ間のナビゲーション
 
 ## Link
 
