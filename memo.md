@@ -2,7 +2,7 @@
 
 ## Image
 
-- `md:block` <-これは、`mobile`?`middle device`
+- `md:block` <-これは、`medium`らしい
 - [Image Optimization](https://nextjs.org/docs/app/building-your-application/optimizing/images)
 
 # Ch4: Layouts and Pages
@@ -44,11 +44,11 @@ className={clsx(
 )}
 ```
 
-- `pathname === link.href`の時に、下部を適用する、って認識であってるかな
+- `pathname === link.href`の時に、追加で`bg-sky-100 text-blue-600`が追加される
 
 # Ch.6: Setting Up Your Database
 
-- データを DB に登録することを`seeding`と呼ぶ？
+- データを DB に登録することを`seeding`と呼ぶ
 
 # [Ch.7: Fetching Data](https://nextjs.org/learn/dashboard-app/fetching-data#using-server-components-to-fetch-data)
 
@@ -64,19 +64,13 @@ API
 
 - DB をいじいじする必要があるとき
 - React Server Component を使ってるとき
-  - なんだこれは？
+  - ch11にて再度登場するやつ
   - DB を直接クエリ操作できる。DB の漏洩をリスクがない
 - https://vercel.com/docs/storage/vercel-postgres/using-an-orm
 
-SQL
-
-- なんでもできる（versatile: 用途が広い）
-
-結局、API を使っても、クエリを使っても、SQL を使うんじゃないのか？
-
 ## React Server Components
 
-どうやら新しい機能？らしい。デフォで使われてる
+どうやら新しい機能らしい。デフォで使われてる
 
 メリット
 
@@ -103,9 +97,8 @@ SQL
     ```
 
     - 対処法として、`Promise.all()`で並列に処理
-      - どれかのリクエストがめっちゃ遅かったらどうなる...?(そんなこと聞かれても、知らない)
-      - これ、並列に実行している場合ではなく、非同期処理してる場合は、一つ遅いのがあると大変だよね！っていう話な気がしてきた
-        - 非同期だろうが、同期だろうが、データを動的に読み込むのであれば、遅い処理があればそりゃページ読み込む速度遅くなるよね
+      - どれかのリクエストがめっちゃ遅かったらどうなる...?
+        - データを動的に読み込むのであれば、遅い処理があればそりゃページ読み込む速度遅くなるよね
 
     ```
     export async function fetchCardData() {
@@ -165,7 +158,7 @@ SQL
 1. loading.tsx ファイル
 
 - `loading.tsx`は next.js の`Suspense`の特別なファイルらしい
-  - `page.tsx`みたいな、特殊な奴か？
+  - `page.tsx`みたいな、特殊な奴
 
 2. `<Suspense>`コンポーネント
 
@@ -174,10 +167,11 @@ SQL
 
 # [Ch.10: Partial Prerendering](https://nextjs.org/learn/dashboard-app/partial-prerendering)
 
-- 元々、ルート（？）全体を静的・動的レンダリングのどちらかに統一する必要があった（？）
+- 元々、ルート（ページ）全体を静的・動的レンダリングのどちらかに統一する必要があった
 
   - `if you call a dynamic function in a route (like querying your database), the entire route becomes dynamic.`
   - でも、動的・静的どっちも使いたいね
+    - 大部分は静的に生成、一部は動的にデータ取得とか！
   - <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fdashboard-static-dynamic-components.png&w=3840&q=75">
 
 - Partial Prerendering(PPR): Next.js 14 で登場
@@ -223,8 +217,7 @@ export const experimental_ppr = true; // 追記
 - 他の方法として、クライアントの方でstate管理もできる
 - メリット
   1. ブックマークや、他の人にURLでシェアできる
-  2. サーバーサイド・レンダリングと初期ロード：初期状態をレンダリングするために、URLパラメータをサーバー上で直接消費することができ、サーバーレンダリングの処理が容易になります。？？？
-     1. 良く分からない？？？
+  2. サーバーサイドレンダリングと初期読み込み：URLパラメータはサーバー上で直接処理できるから、初期の状態をレンダリングするとき便利
   3. 分析・トラッキング：クライアントでごちゃごちゃしなくても、クエリ・フィルターがURLに直接埋め込まれてるので、容易にユーザーの挙動を追跡できる
 
 ## 検索機能で使う機能
@@ -309,8 +302,8 @@ export const experimental_ppr = true; // 追記
 - [Dynamic Route Seements](https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes)
   - 正確な「segment name」を知らない & ルートをデータを基に作りたい時に良い (ブログタイトル、製品ページ...)
   - <img src="https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fedit-invoice-route.png&w=3840&q=75">
-- server actionにはpropsを渡せない？bindを使う必要がある？
-  - これ良く分からない
+- server actionにはpropsを渡せないから、bindを使う必要がある
+  - クライアントコンポーネントから実行されなくて、サーバーで実行されるため
 
 ## Tip: UUID vs auto-incrementing key
 - auto-incrementing key: 短い
