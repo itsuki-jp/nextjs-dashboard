@@ -317,6 +317,30 @@ export const experimental_ppr = true; // 追記
 - UUID: 長いけどたくさんのメリット
   - IDが衝突しない・ユニーク・列挙型攻撃に強い -> 大きいDBに向いてる
 
+# Ch.13: Handling Errors
+[error.js](https://nextjs.org/docs/app/api-reference/file-conventions/error)
+[notFound](https://nextjs.org/docs/app/api-reference/functions/not-found)
+[not-found.js](https://nextjs.org/docs/app/api-reference/file-conventions/not-found)
+
+## error.tsx
+- エラーが発生したら表示するページ？
+  - どんなエラーでも！
+- fallback(前の画面に戻る？)UIを表示する
+- クライアントコンポーネント（`use client`）
+- 2つのpropsを受け取る
+  - `error`: JSのError オブジェクト
+  - `reset`：route segment(前の画面？)を再レンダリングする
+- ファイルを作って、中身を書く
+## `notFound`関数
+- リソースが存在しない時のみ
+- 下のように、エラーが出そうなところでハンドリング、同じ階層に`not-found.tsx`を作成
+  ```tsx
+  import { notFound } from 'next/navigation';
+  if (!invoice) {
+        notFound();
+  }
+  ```
+
 # memo
 
 ## よくわからんエラー
