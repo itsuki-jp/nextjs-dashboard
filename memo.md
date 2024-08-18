@@ -362,8 +362,20 @@ const FormSchema = z.object({
 
 # Ch.15: Adding Authentication
 ## Authetication vs Authorization
-- Authentication:身分を証明する行為（ユーザー名とパスワード的な） 
-- Authorization: Authenticatedの時、アプリをどこまで使っていいか決める（？）
+- Authentication(認証):身分を証明する行為（ユーザー名とパスワード的な） 
+- Authorization（認可）: 認証された時、アプリをどこまで使っていいか決める（？）
+
+## [NextAuth.js](https://authjs.dev/reference/nextjs)
+- 認証の機能を使える
+  - セッションの管理
+  - サインイン・サインアウト...
+```
+pnpm i next-auth@beta
+```
+下の値を.envの`AUTH_SECRET`に記入する
+```
+openssl rand -base64 32
+```
 
 # memo
 
